@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this is product list Page</title>
+    <style>
+        a{
+            text-decoration: none;  
+            margin: 10px;          
+        }
+        nav{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="AddProduct.html">ProductCreate</a>
+            <a href="Products.html">ProductsList</a>
+        </nav>
+    </header>
+ <h2>this is Product List Page</h2>
+
+ <table id="ptable" border="1">
+    <tr>
+        <th>NO</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+    </tr>
+    
+
+    <script>
+
+        let getLocalStorage = localStorage.getItem('products');
+        let products = getLocalStorage ? JSON.parse(getLocalStorage) : [];
+
+        // const products = [
+        //     {id: 1, name: 'product A', price: 10, quantity:5},
+        //     {id: 2, name: 'product B', price: 10, quantity:5},
+        //     {id: 3, name: 'product C', price: 10, quantity:5},
+        // ];
+        const table = document.getElementById('ptable');
+        let count=1;
+        products.forEach(p => {
+            const row = table.insertRow();
+            const noCell = row.insertCell(0);
+            const nameCell = row.insertCell(1);
+            const priceCell = row.insertCell(2);
+            const quantityCell = row.insertCell(3);
+            const actionCell = row.insertCell(4);
+
+            noCell.innerHTML = count++;
+            nameCell.innerHTML = p.name;
+            priceCell.innerHTML = p.price.toFixed(2);
+            quantityCell.innerHTML = p.quantity;
+            actionCell.innerHTML = `<button onclick= deleteProduct(${p.id})>Delete</button> <button onclick= updateProduct(${p.id})>Update</button>`  
+            console.log("Product id : "+p.id);  
+            deleteProduct = (id) => {
+                    if(confirm("Are you sure you want to delete this product?")) {
+                        products = products.filter(p => p.id !== id);
+                        localStorage.setItem('products', JSON.stringify(products));
+                        location.reload();
+                    }
+            },
+            updateProduct = (id) => {
+                const product = products.find(p => p.id === id);
+                if (product) {
+                    const newName = prompt("Enter new name for the product:", product.name);
+                    const newPrice = prompt("Enter new price for the product:", product.price);
+                    const newQuantity = prompt("Enter new quantity for the product:", product.quantity);
+
+                    if (newName !== null && newPrice !== null && newQuantity !== null) {
+                        product.name = newName;
+                        product.price = parseFloat(newPrice);
+                        product.quantity = parseInt(newQuantity, 10);
+                        localStorage.setItem('products', JSON.stringify(products));
+                        location.reload();
+                    }
+                } else {
+                    alert("Product not found.");
+                }
+            };
+
+        });
+
+    </script>
+ </table>
+</body>
+</html>

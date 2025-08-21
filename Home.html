@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is  Home page</title>
+    <style>
+        a{
+            text-decoration: none;  
+            margin: 10px;          
+        }
+        nav{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="AddProduct.html">ProductCreate</a>
+            <a href="Products.html">ProductsList</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome to the Home Page</h1>
+        <p>This is the main contact area</p>
+        <p>Feel free to explore our product</p>
+
+        <p>
+            <input type="button" value="Clear Products" onclick="clearProducts()">
+        </p>
+        <script>
+            function clearProducts() {
+               if(confirm("Are you sure you want to clear all products?")) {
+                    localStorage.removeItem('products');
+                    alert("All products have been cleared.");
+                    window.location.href = 'Products.html'; // Redirect to Products page
+                }
+            }
+
+        </script>
+    </main>
+    
+</body>
+</html>

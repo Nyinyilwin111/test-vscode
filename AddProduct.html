@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Create Page</title>
+  <style>
+    a {
+      text-decoration: none;
+      margin: 10px;
+    }
+
+    nav {
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    div {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="Home.html">Home</a>
+      <a href="AddProduct.html">Product Create</a>
+      <a href="Products.html">Products List</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 style="text-align:center;">This is Product Create Page</h1>
+  </main>
+
+  <form action="" id="AddProductForm">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" placeholder="Product Name" required>
+    </div>
+    <div>
+      <label for="price">Price</label>
+      <input type="number" name="price" id="price" placeholder="Product Price" step="any" required>
+    </div>
+    <div>
+      <label for="quantity">Quantity</label>
+      <input type="number" name="quantity" id="quantity" placeholder="Product Quantity" step="any" required>
+    </div>
+    <div style="text-align:center;">
+      <button type="submit">Add Product</button>
+    </div>
+  </form>
+
+  <script>
+    let addForm = document.getElementById('AddProductForm');
+
+    addForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent page reload
+
+      let name = document.getElementById('name').value.trim();
+      let price = document.getElementById('price').value;
+      let quantity = document.getElementById('quantity').value;
+
+      let product = {
+        name: name,
+        price: parseFloat(price),
+        quantity: parseInt(quantity)
+      };
+
+      let getLocalStorage = localStorage.getItem('products');
+      let products = getLocalStorage ? JSON.parse(getLocalStorage) : [];
+
+      product.id = generateId(products);
+      products.push(product);
+
+      localStorage.setItem('products', JSON.stringify(products));
+      alert('Product added successfully!');
+      window.location.href = 'Products.html';
+      addForm.reset();
+    });
+
+    function generateId(products) {
+      if (products.length === 0) return 1;
+      let ids = products.map(p => p.id || 0);
+      let maxId = Math.max(...ids);
+      return maxId + 1;
+    }
+  </script>
+</body>
+</html>

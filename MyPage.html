@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <h1 id="color_change">This is my page</h1>
+   <script>
+        // var variable = document.getElementById('color_change');
+        // variable.style.color = 'green';
+
+        // document.addEventListener('DOMContentLoaded',function(){
+        //     // var tap = document.getElementById('color_change');
+        //     // tap.style.color = 'blue';
+        //
+        //     let person={
+        //         name:"Jon",
+        //         age:18,
+        //         city:"Japan"
+        //     }
+        //     for(let k in person){
+        //         console.log(k + " :"+person[k])
+        //     }
+
+        //     for(let i=1;i<=5;i++){
+        //         console.log(i);
+        //     }
+
+        //     let fruit=["apple","orange","banana","acacado"];
+
+        //     fruit.forEach(out => console.log(out));
+
+        //     for(let out of fruit){
+        //         console.log("second loop of first : "+ out);
+        //     }
+
+        //     for(let out in fruit){
+        //         console.log("second loop of second : "+ out);
+        //     }
+
+        //     fruit.push("mango");  // push is add from the array of last index value
+        //     console.log(fruit);
+        //     console.log(fruit.pop());    // pop is extract from the array of last index value
+
+        //     fruit.unshift("cherry");   // unshift is add from the array of first index value
+        //     console.log(fruit);
+
+        //     console.log(fruit.shift());  // shift is extract from the array of first index value
+
+        //     let findFruit = fruit.find(f => f.startsWith('a'));
+        //     console.log(findFruit);
+
+        //     let newFruit = fruit.map(f => f.toUpperCase());
+        //     console.log(newFruit);
+
+        //     let singleString = fruit.reduce((single,fruit) => single + ' '+ fruit," my string : ");   // sum from array of multiple value to one string 
+        //     console.log(singleString);
+
+        //     let total = [10,5,9,3,2].reduce((sum, num) => sum + num,0);
+        //     console.log(total);
+
+
+        //     let a= [1,2,3];
+        //     let b = [4,5,6];
+
+        //     let merged = a.concat(b);
+        //     console.log(merged);
+
+        //     let newArray = merged.slice(2,5);   // 2 and 5 are index of merged array  , not contain from the output result
+        //     console.log(newArray);
+
+        //     let newarray = merged.splice(2,2,"new");
+        //     console.log("splice : "+newarray);
+        // });
+
+   </script>
+
+   <script>
+        // function myfunction(){
+        //     var x = document.getElementById('color_chage');
+        //     x.innerHTML="this is header tap !";
+        // }
+
+        // function myfunction(a,b){
+        //     console.log("a is "+a);
+        //     console.log("b is "+b);
+        // };
+        // myfunction(10,8);
+        // myfunction("this is a value", "this is b value");
+
+        // let divided = (a,b)=> a / b;
+        // console.log(divided(20,5));
+
+        const fun = (name) =>{
+            console.log("this is fun of function :"+name);
+        };
+        fun("jame");
+        function add(a,b){
+            return a+b;
+        }
+         function multiply(a,b){
+            return a*b;
+        }
+        function operator(a,b,funct){
+            return funct(a,b);
+        }
+        console.log(operator(3,2,add));
+        console.log(operator(3,2,multiply));
+
+        //callback function
+
+        function ask(question, yes , no){
+            if(confirm(question)) yes()
+            else no();
+        }
+
+        // function showOk(){
+        //     alert("You agreed.");
+        // }
+        
+        // function showCancle(){
+        //     alert("you cancled the execution.")
+        // }
+        //
+        // ask("do you agree?",showOk, showCancle);
+
+       // ask("Do you agree?", function(){alert('You agreed.')} , function(){alert('You cancled the execution.')} );    //  this is another way of callback function
+
+
+        function fetchData(callback) {     // callback function
+            setTimeout(() => {
+                console.log("Data fetched");
+                    callback();
+            }, 2000);
+        }   
+        fetchData(() => {
+            console.log("Processing data...");
+        });
+
+
+
+   </script>
+</body>
+
+</html>
